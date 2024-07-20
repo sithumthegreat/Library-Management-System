@@ -39,45 +39,33 @@ public class ReturnView extends javax.swing.JFrame {
     private void initComponents() {
 
         bookIdLabel = new java.awt.Label();
-        memberIdField = new java.awt.TextField();
         memberIdLabel = new java.awt.Label();
-        memberIdField1 = new java.awt.TextField();
         issueDateLabel = new java.awt.Label();
-        issueDateFileld = new java.awt.TextField();
         dueDateLabel = new java.awt.Label();
-        dueDateField = new java.awt.TextField();
         searchButton = new java.awt.Button();
         placeReturnButton = new java.awt.Button();
         fineLabel = new java.awt.Label();
-        fineField = new java.awt.TextField();
         fineDataLabel = new java.awt.Label();
+        memberIdField = new javax.swing.JTextField();
+        bookIdField = new javax.swing.JTextField();
+        issueDateFileld = new javax.swing.JTextField();
+        dueDateField = new javax.swing.JTextField();
+        fineField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(51, 255, 255));
 
         bookIdLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         bookIdLabel.setText("Book ID");
 
-        memberIdField.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-
         memberIdLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         memberIdLabel.setText("Member ID");
-
-        memberIdField1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
         issueDateLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         issueDateLabel.setText("Issue Date");
 
-        issueDateFileld.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        issueDateFileld.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                issueDateFileldActionPerformed(evt);
-            }
-        });
-
         dueDateLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         dueDateLabel.setText("Due Date");
-
-        dueDateField.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
         searchButton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         searchButton.setLabel("Search");
@@ -94,71 +82,101 @@ public class ReturnView extends javax.swing.JFrame {
         fineLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         fineLabel.setText("Fine ");
 
-        fineField.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        fineDataLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
-        fineDataLabel.setText("label1");
+        memberIdField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                memberIdFieldActionPerformed(evt);
+            }
+        });
+
+        bookIdField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bookIdFieldActionPerformed(evt);
+            }
+        });
+
+        issueDateFileld.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                issueDateFileldActionPerformed(evt);
+            }
+        });
+
+        dueDateField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dueDateFieldActionPerformed(evt);
+            }
+        });
+
+        fineField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fineFieldActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(dueDateField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(issueDateFileld, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
-                    .addComponent(memberIdField1, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
-                    .addComponent(fineField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(285, 285, 285))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(144, 144, 144)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fineDataLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(memberIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(bookIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(issueDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(42, 42, 42)
-                                .addComponent(memberIdField, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(24, 24, 24)
-                                .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(fineLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(dueDateLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))
-                            .addComponent(fineDataLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(issueDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(fineLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(dueDateLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)))
+                                .addGap(40, 40, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(fineField, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(memberIdField, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(issueDateFileld, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(bookIdField, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(63, 63, 63)
+                                        .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(dueDateField, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 119, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(222, 222, 222)
                         .addComponent(placeReturnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(165, Short.MAX_VALUE))
+                .addGap(60, 60, 60))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(85, 85, 85)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(memberIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(memberIdField, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(28, 28, 28)
-                        .addComponent(bookIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(memberIdField1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(issueDateFileld, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(issueDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(memberIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(memberIdField, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bookIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bookIdField, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(issueDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(issueDateFileld, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(dueDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dueDateField, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dueDateField, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fineField, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fineLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fineLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fineField, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(fineDataLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
@@ -169,10 +187,6 @@ public class ReturnView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void issueDateFileldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_issueDateFileldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_issueDateFileldActionPerformed
-
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         try {
             // TODO add your handling code here:
@@ -181,6 +195,26 @@ public class ReturnView extends javax.swing.JFrame {
             Logger.getLogger(ReturnView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_searchButtonActionPerformed
+
+    private void memberIdFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memberIdFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_memberIdFieldActionPerformed
+
+    private void bookIdFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookIdFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bookIdFieldActionPerformed
+
+    private void issueDateFileldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_issueDateFileldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_issueDateFileldActionPerformed
+
+    private void dueDateFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dueDateFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dueDateFieldActionPerformed
+
+    private void fineFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fineFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fineFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -220,7 +254,7 @@ public class ReturnView extends javax.swing.JFrame {
     public void getDetails()throws Exception{
         try {
             String memberId=memberIdField.getText();
-            String bookId=memberIdField1.getText();
+            String bookId=issueDateFileld.getText();
             ReturnDto returnDto=RETURN_CONTROLLER.get(memberId,bookId);
             if (returnDto!=null){
                 SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
@@ -241,16 +275,16 @@ public class ReturnView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField bookIdField;
     private java.awt.Label bookIdLabel;
-    private java.awt.TextField dueDateField;
+    private javax.swing.JTextField dueDateField;
     private java.awt.Label dueDateLabel;
     private java.awt.Label fineDataLabel;
-    private java.awt.TextField fineField;
+    private javax.swing.JTextField fineField;
     private java.awt.Label fineLabel;
-    private java.awt.TextField issueDateFileld;
+    private javax.swing.JTextField issueDateFileld;
     private java.awt.Label issueDateLabel;
-    private java.awt.TextField memberIdField;
-    private java.awt.TextField memberIdField1;
+    private javax.swing.JTextField memberIdField;
     private java.awt.Label memberIdLabel;
     private java.awt.Button placeReturnButton;
     private java.awt.Button searchButton;

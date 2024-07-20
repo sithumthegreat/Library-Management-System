@@ -60,7 +60,9 @@ public class LoginView extends javax.swing.JFrame {
 
         passwordField.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
+        loginButton.setBackground(new java.awt.Color(255, 0, 51));
         loginButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        loginButton.setForeground(new java.awt.Color(102, 102, 255));
         loginButton.setText("Login");
         loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
