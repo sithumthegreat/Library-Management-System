@@ -40,5 +40,15 @@ public class BorrowDaoImpl implements BorrowDao{
     public ArrayList<BorrowEntity> getAll() throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public String delete(String id, String bId) throws Exception {
+        try {
+            boolean isDeleted=CrudUtil.executeUpdate("DELETE FROM borrow WHERE MemberID=? and BOOKID=? ", id,bId);
+            return isDeleted?"Success":"Fail";
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+    }
     
 }

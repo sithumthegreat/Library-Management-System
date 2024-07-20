@@ -21,5 +21,12 @@ public class ReturnController {
         return service.get(memberId, bookId);
         
     }
+
+    
+
+    public String placeReturn(ReturnDto dto)throws Exception{
+        return service.save(dto);
+      
+    }
     
 }

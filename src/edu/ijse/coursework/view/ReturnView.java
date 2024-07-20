@@ -7,6 +7,7 @@ package edu.ijse.coursework.view;
 import edu.ijse.coursework.controller.BorrowController;
 import edu.ijse.coursework.controller.ReturnController;
 import edu.ijse.coursework.dto.ReturnDto;
+import edu.ijse.coursework.entity.ReturnEntity;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -51,6 +52,7 @@ public class ReturnView extends javax.swing.JFrame {
         issueDateFileld = new javax.swing.JTextField();
         dueDateField = new javax.swing.JTextField();
         fineField = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 255, 255));
@@ -78,41 +80,44 @@ public class ReturnView extends javax.swing.JFrame {
 
         placeReturnButton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         placeReturnButton.setLabel("Place Return");
+        placeReturnButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                placeReturnButtonActionPerformed(evt);
+            }
+        });
 
         fineLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         fineLabel.setText("Fine ");
 
         fineDataLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
+        memberIdField.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         memberIdField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 memberIdFieldActionPerformed(evt);
             }
         });
 
+        bookIdField.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         bookIdField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bookIdFieldActionPerformed(evt);
             }
         });
 
-        issueDateFileld.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                issueDateFileldActionPerformed(evt);
-            }
-        });
+        issueDateFileld.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
-        dueDateField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dueDateFieldActionPerformed(evt);
-            }
-        });
+        dueDateField.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
+        fineField.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         fineField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fineFieldActionPerformed(evt);
             }
         });
+
+        jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jTextField1.setText("Rs");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -121,65 +126,74 @@ public class ReturnView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(222, 222, 222)
+                        .addComponent(placeReturnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(144, 144, 144)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(fineDataLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(memberIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(bookIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(issueDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(fineLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(dueDateLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)))
-                                .addGap(40, 40, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(fineField, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(memberIdField, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(issueDateFileld, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(dueDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(memberIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(fineLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGap(13, 13, 13)
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(issueDateFileld)
+                                            .addComponent(dueDateField, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(fineField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(bookIdField, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(63, 63, 63)
-                                        .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(dueDateField, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 119, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(222, 222, 222)
-                        .addComponent(placeReturnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(60, 60, 60))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(bookIdField, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(memberIdField, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(31, 31, 31)
+                                .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(133, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(85, 85, 85)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(memberIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(memberIdField, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bookIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bookIdField, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(memberIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(bookIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(issueDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(issueDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(issueDateFileld, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(52, 52, 52)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2, Short.MAX_VALUE)
+                        .addComponent(memberIdField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(bookIdField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(42, 42, 42)
+                        .addComponent(issueDateFileld, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(dueDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dueDateField, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
+                    .addComponent(dueDateField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fineLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fineField, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(fineField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(fineLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(76, 76, 76)
                 .addComponent(fineDataLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(placeReturnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45))
         );
@@ -204,13 +218,14 @@ public class ReturnView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_bookIdFieldActionPerformed
 
-    private void issueDateFileldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_issueDateFileldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_issueDateFileldActionPerformed
-
-    private void dueDateFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dueDateFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dueDateFieldActionPerformed
+    private void placeReturnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_placeReturnButtonActionPerformed
+        try {
+            // TODO add your handling code here:
+            placeReturn();
+        } catch (Exception ex) {
+            Logger.getLogger(ReturnView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_placeReturnButtonActionPerformed
 
     private void fineFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fineFieldActionPerformed
         // TODO add your handling code here:
@@ -254,21 +269,48 @@ public class ReturnView extends javax.swing.JFrame {
     public void getDetails()throws Exception{
         try {
             String memberId=memberIdField.getText();
-            String bookId=issueDateFileld.getText();
+            String bookId=bookIdField.getText();
             ReturnDto returnDto=RETURN_CONTROLLER.get(memberId,bookId);
             if (returnDto!=null){
                 SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
                 
                 issueDateFileld.setText(sdf.format(returnDto.getBoorowDate()));
                 dueDateField.setText(sdf.format(returnDto.getDueDate()));
-                fineField.setText(Double.toString(returnDto.getFine()));
+                double fine=returnDto.getFine();
+                if (fine<0){
+                    fine=0.0;
+                }
+                fineField.setText(Double.toString(fine));
                 fineDataLabel.setText(sdf.format(returnDto.getReturningDate()));
+                
+                
+                
                 
             }else{
                 JOptionPane.showMessageDialog(this, "Incorrect  Details");
             }
             
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+        
+    }
+    
+    public void placeReturn()throws Exception{
+        try {
+            ReturnDto dto=new ReturnDto();
+            SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+            dto.setMemberId(memberIdField.getText());
+            dto.setBookId(bookIdField.getText());
+            dto.setBoorowDate(sdf.parse(issueDateFileld.getText()));
+            dto.setDueDate(sdf.parse(dueDateField.getText()));
+            dto.setReturningDate(sdf.parse(fineDataLabel.getText()));
+            dto.setFine(Double.parseDouble(fineField.getText()));
+            
+            String rsp=RETURN_CONTROLLER.placeReturn(dto);
+            JOptionPane.showMessageDialog(this, rsp);
+        } catch (Exception e) {
+            e.printStackTrace();
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
         
@@ -284,6 +326,7 @@ public class ReturnView extends javax.swing.JFrame {
     private java.awt.Label fineLabel;
     private javax.swing.JTextField issueDateFileld;
     private java.awt.Label issueDateLabel;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField memberIdField;
     private java.awt.Label memberIdLabel;
     private java.awt.Button placeReturnButton;

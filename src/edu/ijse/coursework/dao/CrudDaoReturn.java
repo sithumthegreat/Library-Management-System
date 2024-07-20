@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public interface CrudDaoReturn<T ,MEMBERID,BOOKID> extends SuperDao{
     String save(T t) throws Exception;
     String update(T t)throws Exception;
-    //String delete(ID id) throws Exception;
+    //String delete(MEMBERID id,BOOKID bId) throws Exception;
     T get(MEMBERID id,BOOKID bId)throws Exception;
     
     ArrayList<T> getAll() throws Exception;

@@ -33,6 +33,17 @@ public class ReturnEntity {
         this.fine = fine;
     }
 
+    public ReturnEntity(String memberId, String bookId, Date issueDate, Date dueDate, Date returningDate, Double fine) {
+        this.memberId = memberId;
+        this.bookId = bookId;
+        this.issueDate = issueDate;
+        this.dueDate = dueDate;
+        this.returningDate = returningDate;
+        this.fine = fine;
+    }
+    
+    
+
     public String getMemberId() {
         return memberId;
     }

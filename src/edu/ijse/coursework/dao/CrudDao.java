@@ -15,6 +15,7 @@ public interface CrudDao<T ,ID> extends SuperDao{
     String save(T t) throws Exception;
     String update(T t)throws Exception;
     String delete(ID id) throws Exception;
+    String delete(ID id,ID bId)throws Exception;
     T get(ID id)throws Exception;
     
     ArrayList<T> getAll() throws Exception;

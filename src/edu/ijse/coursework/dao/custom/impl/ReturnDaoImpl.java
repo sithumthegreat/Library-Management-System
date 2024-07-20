@@ -19,7 +19,8 @@ public class ReturnDaoImpl implements ReturnDao{
 
     @Override
     public String save(ReturnEntity t) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        boolean isReturnSaved=CrudUtil.executeUpdate("INSERT INTO  return_table VALUES(?,?,?,?,?,?)", t.getMemberId(),t.getBookId(),t.getIssueDate(),t.getDueDate(),t.getReturningDate(),t.getFine());
+        return isReturnSaved?"Success":"Fail";
     }
 
     @Override
@@ -31,7 +32,7 @@ public class ReturnDaoImpl implements ReturnDao{
     public ReturnEntity get(String id, String bId) throws Exception {
         ResultSet rst=CrudUtil.exeQuery("SELECT ISSUEDATE,RETURNDATE, CURRENT_DATE AS ReturningDate,  DATEDIFF(CURRENT_DATE, returnDate) AS daysDifference FROM BORROW WHERE MemberID=? AND BOOKID=?", id,bId);
         if (rst.next()){
-            return new ReturnEntity(id,bId,rst.getDate("ISSUEDATE"),rst.getDate("RETURNDATE"),rst.getDate("ReturningDate"),rst.getInt("daysDifference"),(rst.getDouble("daysDifference"))*5);
+            return new ReturnEntity(id,bId,rst.getDate("ISSUEDATE"),rst.getDate("RETURNDATE"),rst.getDate("ReturningDate"),rst.getInt("daysDifference"),(rst.getDouble("daysDifference")));
         }
         return null;
     }
@@ -40,5 +41,7 @@ public class ReturnDaoImpl implements ReturnDao{
     public ArrayList<ReturnEntity> getAll() throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    
     
 }
