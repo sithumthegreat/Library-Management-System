@@ -7,6 +7,7 @@ package edu.ijse.coursework.service;
 import edu.ijse.coursework.service.custom.impl.BookCategoryServiceImpl;
 import edu.ijse.coursework.service.custom.impl.BookServiceImpl;
 import edu.ijse.coursework.service.custom.impl.BorrowServiceImpl;
+import edu.ijse.coursework.service.custom.impl.LoginServiceImpl;
 import edu.ijse.coursework.service.custom.impl.MemberServiceImpl;
 import edu.ijse.coursework.service.custom.impl.ReturnServiceImpl;
 
@@ -43,13 +44,16 @@ public class ServiceFactory {
                 
             case RETURN:
                 return new ReturnServiceImpl();    
+                
+            case SECURITY:
+                return new LoginServiceImpl();    
             default:
                 return null;
         }
     }
       
       public enum ServiceType{
-        MEMBER,BOOK,BOOK_CATEGORY,BORROW,RETURN
+        MEMBER,BOOK,BOOK_CATEGORY,BORROW,RETURN,SECURITY
     }
     
 }

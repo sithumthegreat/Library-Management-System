@@ -4,22 +4,29 @@
  */
 package edu.ijse.coursework.view;
 
+import edu.ijse.coursework.controller.BorrowController;
+import edu.ijse.coursework.dto.BorrowDto;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Sithum
  */
 public class HomeView extends javax.swing.JFrame {
+    private final  BorrowController BORROW_CONTROLLER;
 
     /**
      * Creates new form HomeView
      */
     public HomeView()throws Exception  {
+        BORROW_CONTROLLER=new BorrowController();
         initComponents();
         //setExtendedState(MAXIMIZED_BOTH);
+        loadTable();
     }
 
     /**
@@ -37,6 +44,9 @@ public class HomeView extends javax.swing.JFrame {
         studentButton = new javax.swing.JButton();
         returnButton = new javax.swing.JButton();
         logoutButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        borrowTable = new javax.swing.JTable();
+        borrowLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,24 +98,51 @@ public class HomeView extends javax.swing.JFrame {
             }
         });
 
+        borrowTable.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        borrowTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(borrowTable);
+
+        borrowLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        borrowLabel.setText("Borrow Details");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(studentButton)
-                .addGap(106, 106, 106)
-                .addComponent(bookButton)
-                .addGap(148, 148, 148)
-                .addComponent(bookCategoryButton)
-                .addGap(142, 142, 142)
-                .addComponent(issueBook)
-                .addGap(127, 127, 127)
-                .addComponent(returnButton)
-                .addGap(138, 138, 138)
-                .addComponent(logoutButton)
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(327, 327, 327)
+                                .addComponent(logoutButton))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(studentButton)
+                                .addGap(65, 65, 65)
+                                .addComponent(bookButton)
+                                .addGap(53, 53, 53)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(bookCategoryButton)
+                                        .addGap(52, 52, 52)
+                                        .addComponent(issueBook)
+                                        .addGap(68, 68, 68)
+                                        .addComponent(returnButton))
+                                    .addComponent(borrowLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 21, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,9 +153,14 @@ public class HomeView extends javax.swing.JFrame {
                     .addComponent(studentButton)
                     .addComponent(bookCategoryButton)
                     .addComponent(issueBook)
-                    .addComponent(returnButton)
-                    .addComponent(logoutButton))
-                .addContainerGap(701, Short.MAX_VALUE))
+                    .addComponent(returnButton))
+                .addGap(42, 42, 42)
+                .addComponent(logoutButton)
+                .addGap(18, 18, 18)
+                .addComponent(borrowLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(311, Short.MAX_VALUE))
         );
 
         pack();
@@ -215,11 +257,38 @@ public class HomeView extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void loadTable()throws Exception{
+        try {
+            String columns[]= {"Member ID","Book ID","Issue Date","Return Date"};
+            DefaultTableModel dtm=new DefaultTableModel(columns,0){
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+                }
+                
+            };
+            borrowTable.setModel(dtm);
+            ArrayList<BorrowDto> borrowDtos=BORROW_CONTROLLER.getAll();
+            for(BorrowDto dto:borrowDtos){
+                Object[]  rowData={dto.getMemberId(),dto.getBookId(),dto.getIssueDate(),dto.getReturnDate()};
+                dtm.addRow(rowData);
+            }
+            
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bookButton;
     private javax.swing.JButton bookCategoryButton;
+    private javax.swing.JLabel borrowLabel;
+    private javax.swing.JTable borrowTable;
     private javax.swing.JButton issueBook;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton logoutButton;
     private javax.swing.JButton returnButton;
     private javax.swing.JButton studentButton;

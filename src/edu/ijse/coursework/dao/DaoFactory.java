@@ -7,6 +7,7 @@ package edu.ijse.coursework.dao;
 import edu.ijse.coursework.dao.custom.impl.BookCategoryDaoImpl;
 import edu.ijse.coursework.dao.custom.impl.BookDaoImpl;
 import edu.ijse.coursework.dao.custom.impl.BorrowDaoImpl;
+import edu.ijse.coursework.dao.custom.impl.LoginDaoImpl;
 import edu.ijse.coursework.dao.custom.impl.MemberDaoImpl;
 import edu.ijse.coursework.dao.custom.impl.ReturnDaoImpl;
 
@@ -39,7 +40,8 @@ public class DaoFactory {
                  return new BorrowDaoImpl();
             case  RETURN:
                  return new ReturnDaoImpl();     
-             
+            case  SECURITY:
+                 return new LoginDaoImpl();      
             default:
                 return null;
                 
@@ -49,7 +51,7 @@ public class DaoFactory {
     }
     
     public enum DaoTypes{
-        MEMBER,BOOK,BOOK_CATEGORY,BORROW,RETURN
+        MEMBER,BOOK,BOOK_CATEGORY,BORROW,RETURN,SECURITY
     }
     
     

@@ -4,6 +4,8 @@
  */
 package edu.ijse.coursework.view;
 
+import edu.ijse.coursework.controller.LoginController;
+import edu.ijse.coursework.dto.LoginDto;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -14,11 +16,13 @@ import javax.swing.JOptionPane;
  * @author Sithum
  */
 public class LoginView extends javax.swing.JFrame {
+    private final LoginController LOGIN_CONTROLLER;
 
     /**
      * Creates new form LoginView
      */
     public LoginView()throws Exception{
+        LOGIN_CONTROLLER =new LoginController();
         initComponents();
         //setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
@@ -127,7 +131,14 @@ public class LoginView extends javax.swing.JFrame {
     }//GEN-LAST:event_usernameFieldActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        // TODO add your handling code here:
+//         try {
+//            loginOperation();
+//        } catch (Exception ex) {
+//            Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
+//            JOptionPane.showMessageDialog(this, "bla bla");
+//        }
+
+               // TODO add your handling code here:
         if (usernameField.getText().equals("admin")& passwordField.getText().equals("admin")){
             setVisible(false);
             try {
@@ -138,6 +149,7 @@ public class LoginView extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this, "Username or Password Incorrect");
         }
+        
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
@@ -183,6 +195,22 @@ public class LoginView extends javax.swing.JFrame {
             }
         });
     }
+    
+//    public void loginOperation()throws Exception{
+//        try {
+//            LoginDto dto=new LoginDto(usernameField.getText(), passwordField.getText());
+//            String rsp=LOGIN_CONTROLLER.loginOperation(dto);
+//            if (rsp.equals("Success")){
+//                setVisible(false);
+//                new HomeView().setVisible(true);
+//               
+//            }                       
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, e.getMessage());
+//        }
+//        
+//    }
+        
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton closeButton;

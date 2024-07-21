@@ -8,6 +8,9 @@ import edu.ijse.coursework.dao.CrudUtil;
 import edu.ijse.coursework.dao.custom.BorrowDao;
 import edu.ijse.coursework.entity.BorrowEntity;
 import java.util.ArrayList;
+import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -38,7 +41,18 @@ public class BorrowDaoImpl implements BorrowDao{
 
     @Override
     public ArrayList<BorrowEntity> getAll() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ArrayList<BorrowEntity> entities=new ArrayList<>();
+        ResultSet rst=CrudUtil.exeQuery("SELECT * FROM borrow");
+        while(rst.next()){
+             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+             Date issueDate=rst.getDate("ISSUEDATE");
+             Date returnDate=rst.getDate("RETURNDATE");
+            
+             BorrowEntity entity=new BorrowEntity(rst.getString("MemberID"),rst.getString("BOOKID"),issueDate,returnDate);
+             entities.add(entity);
+        }
+        return entities;
+        
     }
 
     @Override

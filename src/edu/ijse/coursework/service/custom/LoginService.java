@@ -4,16 +4,14 @@
  */
 package edu.ijse.coursework.service.custom;
 
-import edu.ijse.coursework.dto.BorrowDto;
+import edu.ijse.coursework.dto.LoginDto;
 import edu.ijse.coursework.service.SuperService;
-import java.util.ArrayList;
 
 /**
  *
  * @author Sithum
  */
-public interface BorrowService extends SuperService{
-    String placeBorrow(BorrowDto borrowDto)throws Exception;
-     public ArrayList<BorrowDto> getAll() throws Exception;
+public interface LoginService extends SuperService{
+    String loginOperation(LoginDto loginDto)throws Exception;
     
 }

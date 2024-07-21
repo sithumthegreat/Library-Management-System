@@ -7,6 +7,7 @@ package edu.ijse.coursework.controller;
 import edu.ijse.coursework.dto.BorrowDto;
 import edu.ijse.coursework.service.ServiceFactory;
 import edu.ijse.coursework.service.custom.BorrowService;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,6 +19,10 @@ public class BorrowController {
     public String placeBorrow(BorrowDto borrowDto) throws Exception{
         return service.placeBorrow(borrowDto);
         
+    }
+
+    public ArrayList<BorrowDto> getAll()throws Exception{
+       return service.getAll();
     }
     
 }

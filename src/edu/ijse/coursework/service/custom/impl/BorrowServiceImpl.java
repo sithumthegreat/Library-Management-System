@@ -13,6 +13,7 @@ import edu.ijse.coursework.entity.BookEntity;
 import edu.ijse.coursework.entity.BorrowEntity;
 import edu.ijse.coursework.service.custom.BorrowService;
 import java.sql.Connection;
+import java.util.ArrayList;
 
 /**
  *
@@ -63,6 +64,23 @@ public class BorrowServiceImpl implements BorrowService{
             connection.setAutoCommit(true);
         }
         
+    }
+
+    @Override
+    public ArrayList<BorrowDto> getAll() throws Exception {
+        ArrayList<BorrowDto> borrowDtos=new ArrayList<>();
+        ArrayList<BorrowEntity> entities=borrowDao.getAll();
+        for (BorrowEntity entity:entities){
+            BorrowDto dto=getBorrowDto(entity);
+            borrowDtos.add(dto);
+            
+        }
+        return borrowDtos;
+    }
+    
+    public BorrowDto getBorrowDto(BorrowEntity entity)throws Exception{
+        BorrowDto dto=new BorrowDto(entity.getMemberId(),entity.getBookId(),entity.getIssueDate(),entity.getReturnDate());
+        return dto;
     }
 
    
