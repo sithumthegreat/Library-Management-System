@@ -66,7 +66,7 @@ public class LoginView extends javax.swing.JFrame {
 
         loginButton.setBackground(new java.awt.Color(255, 0, 51));
         loginButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        loginButton.setForeground(new java.awt.Color(102, 102, 255));
+        loginButton.setForeground(new java.awt.Color(255, 255, 255));
         loginButton.setText("Login");
         loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,24 +131,25 @@ public class LoginView extends javax.swing.JFrame {
     }//GEN-LAST:event_usernameFieldActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-//         try {
-//            loginOperation();
-//        } catch (Exception ex) {
-//            Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
-//            JOptionPane.showMessageDialog(this, "bla bla");
-//        }
+        System.out.println("Login button Clicked");
+        try {
+            loginOperation();
+        } catch (Exception ex) {
+           Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "bla bla");
+        }
 
                // TODO add your handling code here:
-        if (usernameField.getText().equals("admin")& passwordField.getText().equals("admin")){
-            setVisible(false);
-            try {
-                new HomeView().setVisible(true);
-            } catch (Exception ex) {
-                Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }else{
-            JOptionPane.showMessageDialog(this, "Username or Password Incorrect");
-        }
+//        if (usernameField.getText().equals("admin")& passwordField.getText().equals("admin")){
+//            setVisible(false);
+//            try {
+//                new HomeView().setVisible(true);
+//            } catch (Exception ex) {
+//                Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }else{
+//            JOptionPane.showMessageDialog(this, "Username or Password Incorrect");
+//        }
         
     }//GEN-LAST:event_loginButtonActionPerformed
 
@@ -196,21 +197,27 @@ public class LoginView extends javax.swing.JFrame {
         });
     }
     
-//    public void loginOperation()throws Exception{
-//        try {
-//            LoginDto dto=new LoginDto(usernameField.getText(), passwordField.getText());
-//            String rsp=LOGIN_CONTROLLER.loginOperation(dto);
-//            if (rsp.equals("Success")){
-//                setVisible(false);
-//                new HomeView().setVisible(true);
-//               
-//            }                       
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(this, e.getMessage());
-//        }
-//        
-//    }
+    public void loginOperation()throws Exception{
+        try {
+            System.out.println("Login Operation start");
+            LoginDto dto=new LoginDto(usernameField.getText(), passwordField.getText());
+            String rsp=LOGIN_CONTROLLER.loginOperation(dto);
+            if (rsp.equals("Success")){
+                System.out.println("Giving Access to home View");
+                setVisible(false);
+                new HomeView().setVisible(true);               
+            }else{
+                JOptionPane.showMessageDialog(this, rsp);
+               
+            }                       
+        } catch (Exception e) {
+           JOptionPane.showMessageDialog(this, e.getMessage());
+       }
         
+    }
+      
+      
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton closeButton;

@@ -38,19 +38,30 @@ public class LoginDaoImpl implements LoginDao{
 
     @Override
     public String get(LoginEntity t) throws Exception {
-        try {
-        ResultSet rst=CrudUtil.exeQuery("SELECT * FROM security");
-        String userName=rst.getString("USERNAME");
-        String passWord=rst.getString("PASSWORD");
-        if (userName.equals(t.getUsername()) & passWord.equals(t.getPassword())){
-           return "Success";
-        }else{
-           return "Incorrect Username Or Password !";
-        }
+         try {
+            ResultSet rst=CrudUtil.exeQuery("SELECT * FROM security");
+            if(rst.next()){
+                String userName=rst.getString("USERNAME");
+                String passWord=rst.getString("PASSWORD");
+                
+                
+                if (userName.equals(t.getUsername()) & passWord.equals(t.getPassword())){
+                    return "Success";
+                }else{
+                    return "Incorrect Username Or Password !";
+                }
+                
+            }else{
+                System.out.println("next done");
+                return null;
+            }
             
-        } catch (Exception e) {
-            return e.getMessage();
-        }
+            
+          }catch (Exception e) {
+             return e.getMessage();
+           }
+         
+       
        
     }
 

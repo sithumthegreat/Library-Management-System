@@ -5,7 +5,9 @@
 package edu.ijse.coursework.view;
 
 import edu.ijse.coursework.controller.BorrowController;
+import edu.ijse.coursework.controller.ReturnController;
 import edu.ijse.coursework.dto.BorrowDto;
+import edu.ijse.coursework.dto.ReturnDto;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,15 +20,18 @@ import javax.swing.table.DefaultTableModel;
  */
 public class HomeView extends javax.swing.JFrame {
     private final  BorrowController BORROW_CONTROLLER;
+    private final ReturnController RETURN_CONTROLLER;
 
     /**
      * Creates new form HomeView
      */
     public HomeView()throws Exception  {
         BORROW_CONTROLLER=new BorrowController();
+        RETURN_CONTROLLER=new ReturnController();
         initComponents();
         //setExtendedState(MAXIMIZED_BOTH);
         loadTable();
+        loadReturnTable();
     }
 
     /**
@@ -47,8 +52,12 @@ public class HomeView extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         borrowTable = new javax.swing.JTable();
         borrowLabel = new javax.swing.JLabel();
+        returnLabel = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        returnTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(204, 0, 51));
 
         bookCategoryButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         bookCategoryButton.setText("Book Category");
@@ -115,6 +124,23 @@ public class HomeView extends javax.swing.JFrame {
         borrowLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         borrowLabel.setText("Borrow Details");
 
+        returnLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        returnLabel.setText("Return Label");
+
+        returnTable.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        returnTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(returnTable);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -132,17 +158,26 @@ public class HomeView extends javax.swing.JFrame {
                                 .addGap(65, 65, 65)
                                 .addComponent(bookButton)
                                 .addGap(53, 53, 53)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(bookCategoryButton)
                                         .addGap(52, 52, 52)
-                                        .addComponent(issueBook)
-                                        .addGap(68, 68, 68)
-                                        .addComponent(returnButton))
-                                    .addComponent(borrowLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 21, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
+                                        .addComponent(issueBook))
+                                    .addComponent(borrowLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(68, 68, 68)
+                                .addComponent(returnButton)))
+                        .addGap(0, 45, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 665, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 671, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(returnLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(275, 275, 275))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,11 +191,15 @@ public class HomeView extends javax.swing.JFrame {
                     .addComponent(returnButton))
                 .addGap(42, 42, 42)
                 .addComponent(logoutButton)
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addComponent(borrowLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(311, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(returnLabel)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -281,6 +320,28 @@ public class HomeView extends javax.swing.JFrame {
         }
         
     }
+    
+    public void loadReturnTable()throws Exception{
+        try {
+            String column[]={"Member ID","Book ID","Issue Date","Due Date","Returned Date","Fine"};
+            DefaultTableModel dtm=new DefaultTableModel(column,0){
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+                }
+                
+            };
+            returnTable.setModel(dtm);
+            ArrayList<ReturnDto> returnDtos=RETURN_CONTROLLER.getAll();
+            for (ReturnDto dto:returnDtos){
+                Object[] rowData={dto.getMemberId(),dto.getBookId(),dto.getBoorowDate(),dto.getDueDate(),dto.getReturningDate(),dto.getFine()};
+                dtm.addRow(rowData);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bookButton;
@@ -289,8 +350,11 @@ public class HomeView extends javax.swing.JFrame {
     private javax.swing.JTable borrowTable;
     private javax.swing.JButton issueBook;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton logoutButton;
     private javax.swing.JButton returnButton;
+    private javax.swing.JLabel returnLabel;
+    private javax.swing.JTable returnTable;
     private javax.swing.JButton studentButton;
     // End of variables declaration//GEN-END:variables
 }

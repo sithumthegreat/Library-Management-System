@@ -14,6 +14,7 @@ import edu.ijse.coursework.entity.BookEntity;
 import edu.ijse.coursework.entity.ReturnEntity;
 import edu.ijse.coursework.service.custom.ReturnService;
 import java.sql.Connection;
+import java.util.ArrayList;
 import javax.crypto.interfaces.DHPublicKey;
 /**
  *
@@ -89,5 +90,18 @@ public class ReturnServiceImpl implements ReturnService{
         
         
     }
+
+    @Override
+    public ArrayList<ReturnDto> getAll() throws Exception {
+        ArrayList<ReturnDto> returnDtos=new ArrayList<>();
+        ArrayList<ReturnEntity> returnEntities=returnDao.getAll();
+        for (ReturnEntity entity:returnEntities){
+            ReturnDto dto=getReturnDto(entity);
+            returnDtos.add(dto);
+            
+        }
+        return returnDtos;
+    }
+
     
 }

@@ -39,7 +39,15 @@ public class ReturnDaoImpl implements ReturnDao{
 
     @Override
     public ArrayList<ReturnEntity> getAll() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ArrayList<ReturnEntity> returnEntities=new ArrayList<>();
+        ResultSet rst=CrudUtil.exeQuery("SELECT * FROM return_table");
+        while(rst.next()){
+            ReturnEntity entity=new ReturnEntity(rst.getNString("MemberID"),rst.getNString("BOOKID"),rst.getDate("ISSUEDATE"),
+            rst.getDate("DUEDATE"),rst.getDate("RETURNING_DATE"),rst.getDouble("FINE"));
+            returnEntities.add(entity);
+        }
+        return returnEntities;
+        
     }
 
     
