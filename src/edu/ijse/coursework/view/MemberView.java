@@ -7,12 +7,17 @@ package edu.ijse.coursework.view;
 
 import edu.ijse.coursework.controller.MemberController;
 import edu.ijse.coursework.dto.MemberDto;
+import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
+
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.JFrame;
+import java.awt.Color;
 
 /**
  *
@@ -30,6 +35,7 @@ public class MemberView extends javax.swing.JFrame {
         initComponents();
         
         loadTable();
+        
     }
 
     /**
@@ -55,15 +61,19 @@ public class MemberView extends javax.swing.JFrame {
         saveButton = new javax.swing.JButton();
         updateButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
+        memberHeadingLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(204, 204, 204));
 
         contactInfoLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        contactInfoLabel.setForeground(new java.awt.Color(51, 51, 51));
         contactInfoLabel.setText("Contact ");
 
         memberIdField.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         fullNameLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        fullNameLabel.setForeground(new java.awt.Color(51, 51, 51));
         fullNameLabel.setText("Full Name");
 
         fullNameField.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -74,11 +84,13 @@ public class MemberView extends javax.swing.JFrame {
         });
 
         memberIdLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        memberIdLabel1.setForeground(new java.awt.Color(51, 51, 51));
         memberIdLabel1.setText("Member ID");
 
         contactField.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         addressLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        addressLabel.setForeground(new java.awt.Color(51, 51, 51));
         addressLabel.setText("Address");
 
         addressTextArea.setColumns(20);
@@ -87,6 +99,7 @@ public class MemberView extends javax.swing.JFrame {
         jScrollPane1.setViewportView(addressTextArea);
 
         memberTabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        memberTabel.setForeground(new java.awt.Color(51, 51, 51));
         memberTabel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -98,6 +111,10 @@ public class MemberView extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        memberTabel.setInheritsPopupMenu(true);
+        memberTabel.setSelectionBackground(new java.awt.Color(80, 227, 194));
+        memberTabel.setSurrendersFocusOnKeystroke(true);
+        memberTabel.getTableHeader().setReorderingAllowed(false);
         memberTabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 memberTabelMouseClicked(evt);
@@ -105,7 +122,9 @@ public class MemberView extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(memberTabel);
 
+        saveButton.setBackground(new java.awt.Color(74, 144, 226));
         saveButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        saveButton.setForeground(new java.awt.Color(255, 255, 255));
         saveButton.setText("Save");
         saveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,7 +132,9 @@ public class MemberView extends javax.swing.JFrame {
             }
         });
 
+        updateButton.setBackground(new java.awt.Color(75, 144, 226));
         updateButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        updateButton.setForeground(new java.awt.Color(255, 255, 255));
         updateButton.setText("Update");
         updateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,13 +142,18 @@ public class MemberView extends javax.swing.JFrame {
             }
         });
 
+        deleteButton.setBackground(new java.awt.Color(74, 144, 226));
         deleteButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        deleteButton.setForeground(new java.awt.Color(255, 255, 255));
         deleteButton.setText("Delete");
         deleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteButtonActionPerformed(evt);
             }
         });
+
+        memberHeadingLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        memberHeadingLabel.setText("Member Management");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -165,6 +191,10 @@ public class MemberView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)))
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(447, 447, 447)
+                .addComponent(memberHeadingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,7 +222,9 @@ public class MemberView extends javax.swing.JFrame {
                     .addComponent(deleteButton))
                 .addGap(63, 63, 63))
             .addGroup(layout.createSequentialGroup()
-                .addGap(84, 84, 84)
+                .addGap(23, 23, 23)
+                .addComponent(memberHeadingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -305,7 +337,10 @@ public class MemberView extends javax.swing.JFrame {
                 Object[] row={memberDto.getMemberId(),memberDto.getName(),memberDto.getContactInfo(),memberDto.getAddress()};
                 dtm.addRow(row);
             }
-            
+            JTableHeader header=memberTabel.getTableHeader();
+            header.setBackground(new Color(74, 144, 226));
+            header.setForeground(new Color(255,255,255));
+            header.setFont(new Font("segoe UI",Font.BOLD,14));
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
@@ -389,6 +424,7 @@ public class MemberView extends javax.swing.JFrame {
     private javax.swing.JLabel fullNameLabel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel memberHeadingLabel;
     private javax.swing.JTextField memberIdField;
     private javax.swing.JLabel memberIdLabel1;
     private javax.swing.JTable memberTabel;
