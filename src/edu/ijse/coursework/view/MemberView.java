@@ -33,6 +33,8 @@ public class MemberView extends javax.swing.JFrame {
         MEMBER_CONTROLLER=new MemberController();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setTitle("Member Management");
         
         loadTable();
         

@@ -13,6 +13,7 @@ import java.awt.Font;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -32,6 +33,8 @@ public class BookCategoryView extends javax.swing.JFrame {
         BOOK_CATEGORY_CONTROLLER=new BookCategoryController();
         BOOK_CONTROLLER=new BookController();
         initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setTitle("Category Management");
         loadTable();
     }
 
