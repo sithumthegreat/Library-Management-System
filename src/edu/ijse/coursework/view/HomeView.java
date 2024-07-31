@@ -25,6 +25,7 @@ import javax.swing.table.JTableHeader;
 public class HomeView extends javax.swing.JFrame {
     private final  BorrowController BORROW_CONTROLLER;
     private final ReturnController RETURN_CONTROLLER;
+    
 
     /**
      * Creates new form HomeView
@@ -68,6 +69,7 @@ public class HomeView extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        borrowRefresh = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 0, 51));
@@ -229,6 +231,14 @@ public class HomeView extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Rockwell Condensed", 1, 36)); // NOI18N
         jLabel2.setText("Library Mamagement System");
 
+        borrowRefresh.setBackground(new java.awt.Color(74, 144, 228));
+        borrowRefresh.setText("Refresh  Page");
+        borrowRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                borrowRefreshActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -243,17 +253,20 @@ public class HomeView extends javax.swing.JFrame {
                         .addGap(17, 17, 17)
                         .addComponent(jScrollPane1))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(276, 276, 276)
+                        .addComponent(returnLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 422, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(275, 275, 275)
+                                .addGap(27, 27, 27)
+                                .addComponent(borrowRefresh)
+                                .addGap(176, 176, 176)
                                 .addComponent(borrowLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(276, 276, 276)
-                                .addComponent(returnLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(136, 136, 136)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 244, Short.MAX_VALUE))))
+                        .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 823, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -269,7 +282,9 @@ public class HomeView extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32)
-                        .addComponent(borrowLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(borrowLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(borrowRefresh))
                         .addGap(26, 26, 26)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -334,9 +349,23 @@ public class HomeView extends javax.swing.JFrame {
     }//GEN-LAST:event_bookCategoryButtonActionPerformed
 
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
-        // TODO add your handling code here:
-        new ReturnView().setVisible(true);
+        try {
+            // TODO add your handling code here:
+            new ReturnView().setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(HomeView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_returnButtonActionPerformed
+
+    private void borrowRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrowRefreshActionPerformed
+        try {
+            // TODO add your handling code here:
+            loadTable();
+            loadReturnTable();
+        } catch (Exception ex) {
+            Logger.getLogger(HomeView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_borrowRefreshActionPerformed
 
     /**
      * @param args the command line arguments
@@ -392,6 +421,7 @@ public class HomeView extends javax.swing.JFrame {
             for(BorrowDto dto:borrowDtos){
                 Object[]  rowData={dto.getMemberId(),dto.getBookId(),dto.getIssueDate(),dto.getReturnDate()};
                 dtm.addRow(rowData);
+                
             }
             JTableHeader header=borrowTable.getTableHeader();
             header.setBackground(new Color(74,144,226));
@@ -432,11 +462,14 @@ public class HomeView extends javax.swing.JFrame {
         }
         
     }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bookButton;
     private javax.swing.JButton bookCategoryButton;
     private javax.swing.JLabel borrowLabel;
+    private javax.swing.JButton borrowRefresh;
     private javax.swing.JTable borrowTable;
     private javax.swing.JButton issueBook;
     private javax.swing.JLabel jLabel1;
@@ -452,3 +485,5 @@ public class HomeView extends javax.swing.JFrame {
     private javax.swing.JButton studentButton;
     // End of variables declaration//GEN-END:variables
 }
+
+

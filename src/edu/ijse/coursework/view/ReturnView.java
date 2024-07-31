@@ -7,12 +7,13 @@ package edu.ijse.coursework.view;
 import edu.ijse.coursework.controller.BorrowController;
 import edu.ijse.coursework.controller.ReturnController;
 import edu.ijse.coursework.dto.ReturnDto;
-import edu.ijse.coursework.entity.ReturnEntity;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
+
 
 /**
  *
@@ -22,12 +23,14 @@ public class ReturnView extends javax.swing.JFrame {
     private final ReturnController  RETURN_CONTROLLER;
     private final BorrowController BORROW_CONTROLLER;
 
+
     /**
      * Creates new form ReturnView
      */
-    public ReturnView() {
+    public ReturnView() throws Exception{
         this.RETURN_CONTROLLER=new ReturnController();
         this.BORROW_CONTROLLER=new BorrowController();
+        
         initComponents();
         setTitle("Return Management");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -288,6 +291,9 @@ public class ReturnView extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             placeReturn();
+           
+             
+            
         } catch (Exception ex) {
             Logger.getLogger(ReturnView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -327,7 +333,11 @@ public class ReturnView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ReturnView().setVisible(true);
+                try {
+                    new ReturnView().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(ReturnView.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -380,7 +390,11 @@ public class ReturnView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
         
+       
+        
     }
+    
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField bookIdField;

@@ -29,7 +29,7 @@ public class BorrowView extends javax.swing.JFrame {
     private final MemberController MEMBER_CONTROLLER;
     private final BookController BOOK_CONTROLLER;
     private final ArrayList<BorrowDto> borrowDtos=new ArrayList<>();
-
+    
     /**
      * Creates new form BorrowView
      */
@@ -37,6 +37,7 @@ public class BorrowView extends javax.swing.JFrame {
         this.BORROW_CONTROLLER=new BorrowController();
         this.MEMBER_CONTROLLER=new MemberController();
         this.BOOK_CONTROLLER=new BookController();
+        
         initComponents();
         loadTable();
         setTitle("Borrow Management");
@@ -317,6 +318,7 @@ public class BorrowView extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             placeBorrow();
+            
         } catch (Exception ex) {
             Logger.getLogger(BorrowView.class.getName()).log(Level.SEVERE, null, ex);
         }
